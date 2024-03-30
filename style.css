@@ -1,0 +1,221 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border: none;
+}
+
+body {
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    color: black;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 97%;
+    box-shadow: 2px 2px 11px 1px #000000ab;
+}
+
+header ul {
+    display: flex;
+    gap: 15px;
+}
+
+header ul li {
+    padding: 5px;
+    border-radius: 12px;
+    transition: ease-in-out 0.2s;
+}
+
+header ul li:hover {
+    color: #fff;
+    background-color: rgb(105, 105, 105);
+}
+
+main {
+    background-color: #5f6ab3;
+    padding: 25px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.books {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+
+.book-library {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.book-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.book-container {
+    background-color: rgb(186, 185, 190);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 5px;
+    border-radius: 10px;
+}
+
+.material-symbols-outlined {
+    max-width: 30px;
+
+}
+
+.book-container .title {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.book-container .read-book {
+    border-radius: 8px;
+    padding: 5px;
+    margin: 5px;
+    background-color: #228b22;
+}
+
+.book-container .read-book:hover {
+    cursor: pointer;
+    background-color: rgb(79, 203, 51);
+}
+
+.book-container .delete-btn {
+    border-radius: 8px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.book-container .delete-btn:hover {
+    background-color: #ea4242;
+}
+
+.book-container > p{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+}
+
+.book-container > span{
+    font-weight: 800;
+    color: #242435;
+}
+
+.add-book {
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    width: 450px;
+    height: 350px;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.add-book::backdrop {
+    background-color: rgba(128, 125, 126, 0.592);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section {
+    display: flex;
+    padding: 10px;
+    margin: 5px;
+    gap: 15px;
+}
+
+fieldset {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input {
+    padding: 5px 10px;
+    border-radius: 8px;
+    background-color: rgb(226, 222, 222);
+    border: 1px solid darkslategray;
+}
+
+.submit {
+    display: flex;
+    align-items: center;
+}
+
+#read-status {
+    border: 1px solid darkslategray;
+    color: rgb(0, 0, 0);
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.open-modal {
+    position: fixed;
+    bottom: 10px;
+    right: 10%;
+    border: none;
+    border-radius: 10px;
+    background-color: #020b26;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    width: 35px;
+    margin: 5px;
+    padding: 5px 25px;
+    color: #fff;
+    transition: ease-in-out 0.2s;
+}
+
+.open-modal:hover {
+    background-color: rgb(153, 170, 175);
+    transform: scale(1.1);
+}
+
+.book-submit,
+.cancelar {
+    background-color: rgb(111, 119, 128);
+    color: #fff;
+    width: 100px;
+    height: min-content;
+    padding: 5px;
+    border-radius: 10px;
+    transition: ease-in .2s;
+}
+
+.book-submit:hover {
+    background-color: rgb(74, 108, 77);
+    transform: scale(1.06);
+}
+
+.cancelar:hover {
+    background-color: #854a4a;
+    transform: scale(1.06);
+}
