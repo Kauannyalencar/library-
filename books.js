@@ -2,6 +2,8 @@ const dialog = document.querySelector("dialog ")
 const openMdal = document.querySelector(".open-modal")
 const closeModal = document.querySelector(".book-submit");
 const cancelar = document.querySelector(".cancelar")
+const form = document.querySelector("form")
+console.log(form);
 
 const ul = document.querySelector(".book-list")
 const myLibrary = [{
@@ -22,7 +24,7 @@ function Book(title, author, pages, score, read, index) {
 }
 
 function addBookToLibrary() {
-    event.preventDefault()
+   
     let title = document.querySelector("#title");
     let author = document.querySelector("#author")
     let pages = document.querySelector("#pages")
@@ -41,6 +43,7 @@ function addBookToLibrary() {
 function createBookCard() {
 
     ul.innerText = ''
+
     myLibrary.forEach((book, index) => {
         
         const li = document.createElement('li')
@@ -125,6 +128,7 @@ closeModal.onclick = function () {
 }
 
 cancelar.onclick = function () {
+    form.childNodes.value = '';
     dialog.close()
 }
 createBookCard()
