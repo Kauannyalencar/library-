@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My library</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
@@ -34,36 +35,38 @@
                 <section class="sec-name">
                     <fieldset>
                         <label for="title">Book name</label>
-                        <input type="text" name="ibook" id="title">
+                        <input type="text" name="ibook" id="title" required>
                     </fieldset>
                     <fieldset>
                         <label for="author">Author</label>
-                        <input type="text" id="author">
+                        <input type="text" id="author" required>
                     </fieldset>
                 </section>
                 <section class="sec-number">
                     <fieldset>
                         <label for="pages"> Pages</label>
-                        <input type="number" name="pages" id="pages">
+                        <input type="number" name="pages" id="pages" min="10" max="3000" required>
                     </fieldset>
                     <fieldset>
                         <label for="score">Score</label>
-                        <input type="number" name="score" id="score" step="0.5" max="10">
+                        <input type="number" name="score" id="score" step="0.1" max="10" required>
                     </fieldset>
                 </section>
                 <section class="submit">
                     <select name="read-status" id="read-status">
-                        <option value="Read" id="read" selected>Read</option>
+                        <option value="Read" id="read">Read</loption>
                         <option value="Reading" id="reading">Reading</option>
-                        <option value="Plan to read" id="plan-to-read">Plan to read</option>
                     </select>
                     <button class="cancelar">Close</button>
                     <button class="book-submit">Add Book</button>
                 </section>
             </form>
         </dialog>
+        <div >
+            <span class="alert"></span>
+        </div>
     </main>
-    <script src="books.js"></script>
+    <script src="script2.js"></script>
 </body>
 
 </html>

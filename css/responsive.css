@@ -1,0 +1,15 @@
+@media screen and (max-width:480px) {
+    .add-book{
+        width: 90%;
+        font-size: 16px;
+    }
+
+    form > section{
+        width: 100%;
+    }
+
+   form input{
+    width: 65%;
+   }
+
+}

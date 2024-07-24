@@ -1,57 +1,58 @@
-const dialog = document.querySelector("dialog ")
-const openMdal = document.querySelector(".open-modal")
-const closeModal = document.querySelector(".book-submit");
-const cancelar = document.querySelector(".cancelar")
-const form = document.querySelector("form")
-console.log(form);
+const bookList = document.querySelector(".book-list");
+const newBookBtn = document.querySelector(".open-modal")
+const submitBook = document.querySelector(".book-submit")
+const cancelarBtn = document.querySelector(".cancelar")
+const bookForm = document.querySelector(".add-book")
+const inputs = document.querySelectorAll("input")
+let title = document.getElementById("title")
+let author = document.getElementById("author")
+let pages = document.getElementById("pages")
+let score = document.getElementById("score")
+let read = document.getElementById("read-status")
 
-const ul = document.querySelector(".book-list")
-const myLibrary = [{
-    title: "Girls of storm and shandows",
-    author: "Natasha Ngan",
-    pages: 416,
-    score: 8.5,
-    read: "Read",
-}]
+// const library = [
+//     {
+//         title: "Girls of storm and shadows",
+//         author: "Natasha Ngan",
+//         pages: 416,
+//         score: 8.5,
+//         read: "Read",
+//     },
+// ]
 
-function Book(title, author, pages, score, read, index) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.score = score;
-    this.read = read;
-    this.index = index
+
+function createBookCard(library) {
+    bookList.textContent = ''
+    bookList.innerHTML +=  library.map((book, index) => `
+    <div class="book-container" data-index="${index}">
+        <img src='img/book-open-svgrepo-com.svg' class="material-symbols-outlined" alt="book icon">
+        <h3 class="title">${book.title}</h3>
+        <p>by ${book.author}</p>
+        <p>${book.pages}</p>
+        <span>${book.score}</span>
+      <div class="btn-container">
+          <button class="read-book">${book.read}</button>
+          <button class="delete-btn" data-index="0">Delete</button>
+      </div>
+    </div>
+    `).join("")
 }
-
 function addBookToLibrary() {
-   
-    let title = document.querySelector("#title");
-    let author = document.querySelector("#author")
-    let pages = document.querySelector("#pages")
-    let score = document.querySelector("#score")
-    let read = document.querySelector("#read-status");
 
-    const book = new Book(title.value, author.value, pages.value, score.value, read.value, myLibrary.length)
-    myLibrary.push(book)
 
-    title.value = '';
-    author.value = '';
-    pages.value = '';
-    score.value = '';
+    // title.value = ''
+    // author.value = ''
+    // pages.value = ''
+    // score.value = ''
 }
 
 function createBookCard() {
+    bookList.textContent = ''
+    library.forEach((book, index) => {
 
-    ul.innerText = ''
-
-    myLibrary.forEach((book, index) => {
-        
-        const li = document.createElement('li')
-        const div = document.createElement('div')
+        const div = document.createElement("div")
         div.classList.add("book-container")
-        const buttonContainer = document.createElement("div")
-        buttonContainer.classList.add("btn-container")
-
+        div.dataset.index = index
         const bookIcon = document.createElement('img');
         bookIcon.src = 'img/book-open-svgrepo-com.svg'
         bookIcon.classList.add('material-symbols-outlined')
@@ -69,66 +70,68 @@ function createBookCard() {
         let isRead = document.createElement("button")
         isRead.textContent = book.read
         isRead.classList.add("read-book")
+
+        const buttonContainer = document.createElement("div")
+        buttonContainer.classList.add("btn-container");
         const deleteBtn = document.createElement("button");
         deleteBtn.classList.add("delete-btn")
-        deleteBtn.setAttribute('data-index', `${index}`)
         deleteBtn.textContent = "Delete"
+        deleteBtn.dataset.index = index
 
-        isRead.setAttribute('data-index', `${index}`)
-        isRead.addEventListener('click', () => {
-            if (isRead.textContent == 'Read') {
-                isRead.textContent = "Not read"
-                isRead.style.backgroundColor = " #ea4242"
-            } else if (isRead.textContent == 'Not read') {
-                isRead.textContent = 'Reading'
-                isRead.style.backgroundColor = " #efe96e"
-            } else {
-                isRead.textContent = 'Read'
-                isRead.style.backgroundColor = "#228b22"
-            }
+        deleteBtn.addEventListener("click", deleteBook)
 
-        })
-
-        li.dataset.index = index
+        isRead.addEventListener("click", changeReadStatus)
 
         div.appendChild(bookIcon)
         div.appendChild(h3)
         div.appendChild(pAutor)
         div.appendChild(pPages)
         div.appendChild(scoreSpan)
-        
+
         buttonContainer.appendChild(isRead)
         buttonContainer.appendChild(deleteBtn)
         div.appendChild(buttonContainer)
-        li.appendChild(div)
-        ul.appendChild(li)
-
-
-        deleteBtn.addEventListener("click", deleteBook)
-
+        bookList.appendChild(div)
     })
+
+}
+
+function changeReadStatus(e) {
+    const toggle = e.currentTarget.textContent
+    if (toggle === "Read") {
+        e.currentTarget.textContent = "Not Read"
+        e.currentTarget.style.backgroundColor = "#9c1c1c"
+    } else if (toggle === "Not Read") {
+        e.currentTarget.textContent = "Plan to read"
+        e.currentTarget.style.backgroundColor = "#71737c"
+    } else {
+        e.currentTarget.textContent = "Read"
+        e.currentTarget.style.backgroundColor = "#097b09"
+    }
 }
 
 function deleteBook(e) {
-    const currentBook = e.currentTarget
-    const index = currentBook.dataset.index
-
-    myLibrary.splice(index, 1)
+    const index = e.target.dataset.index;
+    library.splice(index, 1)
     createBookCard()
 }
 
-openMdal.onclick = function () {
-    dialog.showModal()
+newBookBtn.onclick = function () {
+    bookForm.showModal()
 }
 
-closeModal.onclick = function () {
-    addBookToLibrary()
-    createBookCard()
-    dialog.close()
+submitBook.onclick = function () {
+    event.preventDefault()
+    let book = new Book(title.value, author.value, pages.value, score.value, read.value, library.length);
+   
+    //    bookForm.close()
 }
 
-cancelar.onclick = function () {
-    form.childNodes.value = '';
-    dialog.close()
+cancelarBtn.onclick = function () {
+    event.preventDefault()
+
+    inputs.forEach(input => { input.value = '' });
+    bookForm.close()
 }
-createBookCard()
+
+createBookCard(library)
